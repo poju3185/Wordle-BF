@@ -48,16 +48,16 @@ def main():
         alphabet_counts, orient='index'
     ).rename(columns={0:'Available'})
 
-    guess = input('Enter first three guesses without comma: ')
-    result =input('Enter 15 results without comma.(A,B,or X): ')
+    guess = input('Enter first three guesses without comma: ').lower()
+    result =input('Enter 15 results without comma.(A,B,or X): ').lower()
 
 
     while True:
         for i in range(len(result)):
-            if result[i] == 'X' or result[i] == 'x':
+            if result[i] == 'x':
                 if guess[i] not in A_dic.keys() and guess[i] not in B_dic.keys():
                     final_dataframe = final_dataframe[~final_dataframe[0].str.contains( guess[i] )]
-            elif result[i] == 'A' or result[i] == 'a':
+            elif result[i] == 'a':
                 try:
                     if i not in A_dic[ guess[i] ]:
                         A_dic[ guess[i] ].append( i%5 ) 
@@ -67,7 +67,7 @@ def main():
                     A_dic[ guess[i] ] =  [i%5] 
                     if guess[i] in B_dic:
                         del B_dic[guess[i]]
-            elif result[i] == 'B' or result[i] == 'b':
+            elif result[i] == 'b':
                 try:
                     B_dic[ guess[i] ].append(i%5) 
                 except:
@@ -119,13 +119,13 @@ def main():
         # flg_array = np.array(five_letter_guess)
         result = search(five_letter_guess, final_dataframe, A_dic, B_dic)
         if len(result) == 1:
-            print(result)
+            print(f'Answer: {result}')
             break
         else:
-            print(result[0])
+            print(f'Guess: {result[0]}')
             print(result)
             guess = result[0]
-            result = input('Enter the result: ')
+            result = input('Enter the result: ').lower()
 
 main()
 end = time.process_time()
