@@ -15,7 +15,7 @@ def search(guess_list, dataframe, A_dic, B_dic):
                     for num in B_dic[i]:
                         if word[ num ] == i:
                             IsAvailable = False
-                for j in A_dic:                     # i = letter ex.'r'
+                for j in A_dic:                   
                     for num in A_dic[j]:
                         if word[ num ] != j:
                             IsAvailable = False
@@ -27,9 +27,9 @@ def search(guess_list, dataframe, A_dic, B_dic):
 def tup_to_string( tups ):
     l = []
     for tup in tups:
-        l.append( list(tup) )                                       #轉換成list
+        l.append( list(tup) )
     string_lsit =[]
-    for lists in l:                                      #轉換成string
+    for lists in l:
         string_lsit.append(''.join(lists) )
     return string_lsit
 
@@ -92,7 +92,7 @@ def main():
         AorB_list = list(A_dic.keys()) + list(B_dic.keys())
         ult_list = [ i for i in ult_list if i not in AorB_list]
 
-        remaining_tups = list(combinations(''.join(ult_list), 5 - len(A_dic.keys()) - len(B_dic.keys()) ))     #剩下數字亂排
+        remaining_tups = list(combinations(''.join(ult_list), 5 - len(A_dic.keys()) - len(B_dic.keys()) ))     
         # print(len(remaining_tups))
 
         remaining_list = tup_to_string( remaining_tups )
@@ -112,7 +112,7 @@ def main():
             for word in l:
                 if set(''.join(AorB_list)) <= set(word):
                     l2.append(word)
-            for lists in l2:                                      #轉換成string
+            for lists in l2:                                   
                 five_letter_guess.append(''.join(lists) )
         five_letter_guess = list(set(five_letter_guess))
         # print(len(five_letter_guess))
